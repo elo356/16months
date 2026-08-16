@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Feliz 16 meses, mi amor ♥</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+
+    font-family: Georgia, "Times New Roman", serif;
+    color: #5a3442;
+
+    background:
+        radial-gradient(circle at 20% 20%, #ffe5ef 0, #ffd4e4 25%, transparent 55%),
+        radial-gradient(circle at 80% 80%, #f8d9e7 0, #f4c7da 25%, transparent 55%),
+        #fff8fb;
+}
+
+/* Corazones flotando */
+.pet {
+    position: fixed;
+    color: #e58aaa;
+    opacity: .5;
+    font-size: 20px;
+    animation: float 7s ease-in-out infinite;
+}
+
+.a {
+    left: 8%;
+    top: 15%;
+}
+
+.b {
+    left: 82%;
+    top: 20%;
+    animation-delay: 1s;
+}
+
+.d {
+    left: 20%;
+    top: 75%;
+    animation-delay: 2s;
+}
+
+.e {
+    left: 75%;
+    top: 78%;
+    animation-delay: 3s;
+}
+
+@keyframes float {
+    50% {
+        transform: translateY(-30px) rotate(10deg);
+    }
+}
+
+/* Tarjeta */
+.card {
+    width: min(92vw, 540px);
+    margin: 25px 0;
+    padding: 35px 28px;
+    text-align: center;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.76);
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 20px 70px rgba(139,62,92,.18);
+}
+
+/* Corazón principal */
+.heart {
+    font-size: 58px;
+    animation: pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+h1 {
+    margin: 8px 0;
+    color: #a63f68;
+    font-size: 32px;
+}
+
+.subtitle {
+    line-height: 1.6;
+    font-size: 17px;
+    margin: 0 auto 25px;
+}
+
+/* SOBRE */
+.envelope {
+    position: relative;
+    margin: 22px auto 24px;
+
+    width: 260px;
+    height: 170px;
+
+    cursor: pointer;
+}
+
+/* Parte principal del sobre */
+.env-body {
+    position: absolute;
+    inset: 0;
+
+    background: #f7a9c2;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 14px 30px rgba(130,52,81,.18);
+
+    overflow: hidden;
+}
+
+/* Triángulos inferiores */
+.env-body:before,
+.env-body:after {
+    content: "";
+
+    position: absolute;
+    bottom: 0;
+
+    width: 0;
+    height: 0;
+
+    border-style: solid;
+
+    z-index: 2;
+}
+
+.env-body:before {
+    left: 0;
+
+    border-width: 85px 130px 0 0;
+    border-color: #ec86a9 transparent transparent;
+}
+
+.env-body:after {
+    right: 0;
+
+    border-width: 85px 0 0 130px;
+    border-color: #df7098 transparent transparent;
+}
+
+/* Tapa del sobre */
+.flap {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 0;
+    height: 0;
+
+    border-left: 130px solid transparent;
+    border-right: 130px solid transparent;
+    border-top: 90px solid #f9bfd2;
+
+    z-index: 4;
+
+    transform-origin: top;
+
+    transition: transform .75s ease;
+}
+
+/* Sello */
+.seal {
+    position: absolute;
+
+    z-index: 5;
+
+    left: 50%;
+    top: 48%;
+
+    transform: translate(-50%, -50%);
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    background: #b83f6d;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 22px;
+
+    box-shadow:
+        0 5px 12px rgba(100,30,60,.25);
+
+    transition: .4s;
+}
+
+/* Animación al abrir */
+.envelope.open .flap {
+    transform: rotateX(180deg);
+}
+
+.envelope.open .seal {
+    opacity: 0;
+
+    transform:
+        translate(-50%, -30%)
+        scale(.7);
+}
+
+/* Botón */
+button {
+    border: 0;
+
+    border-radius: 999px;
+
+    padding: 14px 25px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    background: #b83f6d;
+    color: white;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 22px rgba(184,63,109,.25);
+
+    transition: .2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+/* PDF */
+#pdfBox {
+    display: none;
+    margin-top: 25px;
+}
+
+#pdfBox.show {
+    display: block;
+
+    animation: appear .7s ease;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+iframe {
+    width: 100%;
+    height: 520px;
+
+    border: 0;
+
+    border-radius: 15px;
+
+    background: white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Corazones -->
+<div class="pet a">♥</div>
+<div class="pet b">♥</div>
+<div class="pet d">♥</div>
+<div class="pet e">♥</div>
+
+
+<main class="card">
+
+    <div class="heart">♥</div>
+
+    <h1>
+        Feliz 16 meses, mi amor
+    </h1>
+
+    <p class="subtitle">
+        Hice esto especialmente para ti.<br>
+        Abre el sobre, mi amor. ♥
+    </p>
+
+
+    <!-- SOBRE -->
+    <div
+        class="envelope"
+        id="envelope"
+        onclick="openLetter()"
+    >
+
+        <div class="env-body"></div>
+
+        <div class="flap"></div>
+
+        <div class="seal">
+            ♥
+        </div>
+
+    </div>
+
+
+    <button onclick="openLetter()">
+        Abrir mi carta ♥
+    </button>
+
+
+    <!-- CARTA -->
+    <section id="pdfBox">
+
+        <p>
+            <b>
+                Para ti, con todo mi amor ♥
+            </b>
+        </p>
+
+        <iframe
+            src="carta_16_meses.pdf"
+            title="Carta para mi amor">
+        </iframe>
+
+    </section>
+
+</main>
+
+
+<script>
+
+function openLetter() {
+
+    // Abrir el sobre
+    document
+        .getElementById("envelope")
+        .classList
+        .add("open");
+
+
+    // Mostrar la carta después de la animación
+    setTimeout(() => {
+
+        document
+            .getElementById("pdfBox")
+            .classList
+            .add("show");
+
+    }, 650);
+
+
+    // Bajar suavemente hasta la carta
+    setTimeout(() => {
+
+        document
+            .getElementById("pdfBox")
+            .scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+    }, 700);
+
+}
+
+</script>
+
+</body>
+</html>
